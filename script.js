@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const imageWrapper = document.querySelector(".image-wrapper");
     const backgroundBlur = document.querySelector(".background-blur");
-    const totalImages = 20; 
+    const totalImages = 20;
     let currentIndex = 0;
     let autoSlide;
 
@@ -17,11 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showImage(index) {
         if (!images || images.length === 0) return; // Ensure images exist
-    
+
         images.forEach(img => img.classList.remove("active"));
         images[index].classList.add("active");
-    
-    let indexblur = index 
+
+        let indexblur = index
         // Ensure background updates properly
         if (backgroundBlur) {
             backgroundBlur.style.opacity = "0";
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 300);
         }
     }
-    
+
     let previousIndex = null; // Variable to store the previous index
 
     function nextImage() {
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function prevImage() {
-        if (previousIndex!== null) {
+        if (previousIndex !== null) {
             currentIndex = previousIndex;
             previousIndex = null; // Reset previousIndex after going back
             showImage(currentIndex);
@@ -73,31 +73,67 @@ document.addEventListener("DOMContentLoaded", function () {
     nextImage();
     startAutoSlide();
 
+    //pause button
+    const pauseBtn = document.querySelector(".pause-btn");
+    let isPaused = false;
+
+    function startAutoSlide() {
+        autoSlide = setInterval(nextImage, 4000);
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlide);
+    }
+
+    pauseBtn.addEventListener("click", function () {
+        if (isPaused) {
+            startAutoSlide();
+            pauseBtn.textContent = "Pause";
+        } else {
+            stopAutoSlide();
+            togglePause(true);
+            pauseBtn.textContent = "Resume";
+        }
+        isPaused = !isPaused;
+        togglePause(false)
+    });
+
+    //show / hide elements 
     const prevBtn = document.querySelector(".prev-btn");
     const nextBtn = document.querySelector(".next-btn");
     const titleBox = document.querySelector(".title-box")
     const legalBox = document.querySelector(".legal")
     let inactivityTimeout;
 
-    async function toggleTitle (show) {
+    async function toggleTitle(show) {
         if (show == true) {
             titleBox.classList.remove("hide-title");
             titleBox.classList.add("show-title");
         } else {
-            await new Promise(resolve => setTimeout(resolve,2000));
+            await new Promise(resolve => setTimeout(resolve, 1600));
             titleBox.classList.remove("show-title");
             titleBox.classList.add("hide-title");
         }
     }
 
-    async function toggleLegal (show) {
+    async function toggleLegal(show) {
         if (show == true) {
             legalBox.classList.remove("hide-legal");
             legalBox.classList.add("show-legal");
         } else {
-            await new Promise(resolve => setTimeout(resolve,20000));
+            await new Promise(resolve => setTimeout(resolve, 13000));
             titleBox.classList.remove("show-legal");
             legalBox.classList.add("hide-legal");
+        }
+    }
+
+    function togglePause(show) {
+        if (show == true) {
+            pauseBtn.classList.remove("hide-buttons")
+        } else { 
+            if (isPaused == false) {
+                pauseBtn.classList.add("hide-buttons")
+            } 
         }
     }
 
@@ -105,14 +141,16 @@ document.addEventListener("DOMContentLoaded", function () {
     function hideButtons() {
         prevBtn.classList.add("hide-buttons");
         nextBtn.classList.add("hide-buttons");
+        togglePause(false);
         toggleTitle(false);
         toggleLegal(false);
     }
-    
+
     // Function to show the buttons
     function showButtons() {
         prevBtn.classList.remove("hide-buttons");
         nextBtn.classList.remove("hide-buttons");
+        togglePause(true);
         toggleTitle(true);
         toggleLegal(true);
     }
@@ -127,7 +165,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Initial state: Hide buttons after a delay
-    inactivityTimeout = setTimeout(hideButtons, 2600); 
+    inactivityTimeout = setTimeout(hideButtons, 2600);
 
+    // stop rightclick - to stop causal stealing of images
     document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // Keyboard shortcuts
+    document.addEventListener("keydown", function (event) {
+        if (event.key === " ") { // Spacebar for pause/resume
+            event.preventDefault(); // Prevent default spacebar behavior (scrolling)
+            pauseBtn.click(); // Simulate a click on the pause button
+        } else if (event.key === "ArrowLeft") { // Left arrow for previous
+            document.querySelector(".prev-btn").click();
+        } else if (event.key === "ArrowRight") { // Right arrow for next
+            document.querySelector(".next-btn").click();
+        }
+    });
 });
