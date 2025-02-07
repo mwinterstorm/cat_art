@@ -8,6 +8,19 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentIndex = 0;
     let autoSlide;
 
+    // PWA
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('service-worker.js')
+          .then(function(registration) {
+              console.log('Service Worker registered');
+            })
+          .catch(function(error) {
+              console.log('Service Worker registration failed:', error);
+            });
+        });
+      }
+
     // Create images dynamically
     for (let i = 1; i <= totalImages; i++) {
         let img = document.createElement("img");
