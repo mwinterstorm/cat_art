@@ -18,7 +18,7 @@ body, html {
     left: -10;
     width: 150%;
     height: 150%;
-    rotate: 20deg;
+    rotate: 10deg;
     z-index: 1;
     overflow: hidden;
 }
@@ -32,7 +32,7 @@ body, html {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(15px);
+    filter: blur(10px) saturate(0.2);
     transition: opacity 0.5s ease-in-out;
     opacity: 1;
 }
@@ -97,13 +97,15 @@ body, html {
     top: 50%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.6);
-    color: white;
+    color: #FFFFF5;
     padding: 10px 15px;
     border: none;
     cursor: pointer;
     font-size: 16px;
     z-index: 3;
     border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-variant: small-caps;
 }
 
 .prev-btn {
@@ -116,24 +118,74 @@ body, html {
 
 .hide-buttons {
     opacity: 0;
-    transition: opacity 0.3s ease-in-out; /* Smooth fade out */
+    transition: opacity 0.3s ease-in-out; 
+}
+
+.show-title {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out; 
+}
+
+.hide-title {
+    opacity: 0;
+    transition: opacity 1s ease-in-out; 
+}
+
+.show-legal {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out; 
+}
+
+.hide-legal {
+    opacity: 0;
+    transition-delay: 19s;
+    transition: opacity 1s ease-in-out; 
 }
 
 .title-box {
     position: absolute;
-    bottom: 35%; /* Adjust position as needed */
+    bottom: 26%; /* Adjust position as needed */
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
-    color: white;
+    color: #FFFFF5;
     padding: 10px 20px;
-    border-radius: 5px; /* Optional: Rounded corners */
+    border-radius: 10px; /* Optional: Rounded corners */
     z-index: 3; /* Ensure it's above the image */
-    transition: opacity 1s ease-in-out; /* Smooth fade */
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 450;
+    font-variant: small-caps;
+    letter-spacing: -1.4px;
+    word-spacing: -10%;
+    text-align: center;
 }
 
-.title-box.title {
-    font-size: 36px; /* Adjust font size as needed */
+.title {
+    font-size: 5vmax; /* Adjust font size as needed */
+}
+
+.subtitle {
+    font-size: 3vmax; /* Adjust font size as needed */
+}
+
+.legal {
+    position: absolute;
+    bottom: 4%; 
+    right: 3%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    color: #FFFFF5;
+    padding: 6px 12px;
+    border-radius: 6px; 
+    z-index: 3; 
+    font-family: 'Courier New', Courier, monospace;
+    font-variant: small-caps;
+    letter-spacing: -0.8px;
+    word-spacing: -6%;
+    text-align: center;
+}
+
+.copyright {
+    font-size: 1vmax;
 }
 
 .overlay {
@@ -143,5 +195,5 @@ body, html {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0);
-    z-index: 3; /* Ensure it's above the image */
+    z-index: 4; 
 }

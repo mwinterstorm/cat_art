@@ -76,20 +76,45 @@ document.addEventListener("DOMContentLoaded", function () {
     const prevBtn = document.querySelector(".prev-btn");
     const nextBtn = document.querySelector(".next-btn");
     const titleBox = document.querySelector(".title-box")
+    const legalBox = document.querySelector(".legal")
     let inactivityTimeout;
+
+    async function toggleTitle (show) {
+        if (show == true) {
+            titleBox.classList.remove("hide-title");
+            titleBox.classList.add("show-title");
+        } else {
+            await new Promise(resolve => setTimeout(resolve,2000));
+            titleBox.classList.remove("show-title");
+            titleBox.classList.add("hide-title");
+        }
+    }
+
+    async function toggleLegal (show) {
+        if (show == true) {
+            legalBox.classList.remove("hide-legal");
+            legalBox.classList.add("show-legal");
+        } else {
+            await new Promise(resolve => setTimeout(resolve,20000));
+            titleBox.classList.remove("show-legal");
+            legalBox.classList.add("hide-legal");
+        }
+    }
 
     // Function to hide the buttons
     function hideButtons() {
         prevBtn.classList.add("hide-buttons");
         nextBtn.classList.add("hide-buttons");
-        titleBox.classList.add("hide-buttons");
+        toggleTitle(false);
+        toggleLegal(false);
     }
-
+    
     // Function to show the buttons
     function showButtons() {
         prevBtn.classList.remove("hide-buttons");
         nextBtn.classList.remove("hide-buttons");
-        titleBox.classList.remove("hide-buttons");
+        toggleTitle(true);
+        toggleLegal(true);
     }
 
     // Event listener for mouse movement
