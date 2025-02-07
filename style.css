@@ -118,3 +118,20 @@ body, html {
     opacity: 0;
     transition: opacity 0.3s ease-in-out; /* Smooth fade out */
 }
+
+.title-box {
+    position: absolute;
+    bottom: 35%; /* Adjust position as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px; /* Optional: Rounded corners */
+    z-index: 3; /* Ensure it's above the image */
+    transition: opacity 1s ease-in-out; /* Smooth fade */
+}
+
+.title-box.title {
+    font-size: 36px; /* Adjust font size as needed */
+}

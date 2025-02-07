@@ -65,18 +65,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const prevBtn = document.querySelector(".prev-btn");
     const nextBtn = document.querySelector(".next-btn");
+    const titleBox = document.querySelector(".title-box")
     let inactivityTimeout;
 
     // Function to hide the buttons
     function hideButtons() {
         prevBtn.classList.add("hide-buttons");
         nextBtn.classList.add("hide-buttons");
+        titleBox.classList.add("hide-buttons");
     }
 
     // Function to show the buttons
     function showButtons() {
         prevBtn.classList.remove("hide-buttons");
         nextBtn.classList.remove("hide-buttons");
+        titleBox.classList.remove("hide-buttons");
     }
 
     // Event listener for mouse movement
