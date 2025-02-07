@@ -190,10 +190,6 @@ body, html {
     position: absolute;
     bottom: 4%; 
     right: 3%;
-    background-color: rgba(0, 0, 0, 0.6); 
-    color: #FFFFF5;
-    padding: 6px 12px;
-    border-radius: 6px; 
     z-index: 3; 
     font-family: 'Courier New', Courier, monospace;
     font-variant: small-caps;
@@ -204,6 +200,19 @@ body, html {
 
 .copyright {
     font-size: 1vmax;
+    background-color: rgba(0, 0, 0, 0.6); 
+    color: #FFFFF5;
+    padding: 6px 12px;
+    border-radius: 6px; 
+    z-index: 3; 
+    font-family: 'Courier New', Courier, monospace;
+    font-variant: small-caps;
+    letter-spacing: -0.8px;
+    word-spacing: -6%;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+
 }
 
 .overlay {

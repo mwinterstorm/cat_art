@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
         prevBtn.classList.remove("hide-buttons");
         nextBtn.classList.remove("hide-buttons");
         togglePause(true);
-        toggleTitle(true);
+        toggleTitle(false);
         toggleLegal(true);
     }
 
@@ -169,6 +169,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // stop rightclick - to stop causal stealing of images
     document.addEventListener('contextmenu', event => event.preventDefault());
+
+    document.querySelector(".copyright").addEventListener("click", function () {
+        toggleTitle(true)
+    });
 
     // Keyboard shortcuts
     document.addEventListener("keydown", function (event) {
