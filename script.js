@@ -32,15 +32,25 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     
+    let previousIndex = null; // Variable to store the previous index
 
     function nextImage() {
-        currentIndex = (currentIndex + 1) % totalImages;
+        let newIndex;
+        do {
+            newIndex = Math.floor(Math.random() * totalImages);
+        } while (newIndex === currentIndex);
+
+        previousIndex = currentIndex; // Store the current index as previous
+        currentIndex = newIndex;
         showImage(currentIndex);
     }
 
     function prevImage() {
-        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-        showImage(currentIndex);
+        if (previousIndex!== null) {
+            currentIndex = previousIndex;
+            previousIndex = null; // Reset previousIndex after going back
+            showImage(currentIndex);
+        }
     }
 
     document.querySelector(".next-btn").addEventListener("click", function () {
