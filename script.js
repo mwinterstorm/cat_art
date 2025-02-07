@@ -62,4 +62,32 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initialize carousel
     showImage(currentIndex);
     startAutoSlide();
+
+    const prevBtn = document.querySelector(".prev-btn");
+    const nextBtn = document.querySelector(".next-btn");
+    let inactivityTimeout;
+
+    // Function to hide the buttons
+    function hideButtons() {
+        prevBtn.classList.add("hide-buttons");
+        nextBtn.classList.add("hide-buttons");
+    }
+
+    // Function to show the buttons
+    function showButtons() {
+        prevBtn.classList.remove("hide-buttons");
+        nextBtn.classList.remove("hide-buttons");
+    }
+
+    // Event listener for mouse movement
+    document.addEventListener("mousemove", function () {
+        showButtons(); // Show buttons immediately on mousemove
+        clearTimeout(inactivityTimeout); // Clear any existing timeout
+
+        // Set a new timeout to hide buttons after inactivity
+        inactivityTimeout = setTimeout(hideButtons, 2600); // 2 seconds
+    });
+
+    // Initial state: Hide buttons after a delay
+    inactivityTimeout = setTimeout(hideButtons, 2600); 
 });
