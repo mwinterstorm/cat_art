@@ -103,4 +103,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Initial state: Hide buttons after a delay
     inactivityTimeout = setTimeout(hideButtons, 2600); 
+
+    document.addEventListener('contextmenu', event => event.preventDefault());
 });
