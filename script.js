@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const totalImages = 20;
+    
+    const historyLimit = totalImages - 1; // Adjust this value to change the history limit
     const imageHistory = new Array(); // Array to store image history
-    const historyLimit = 20; // Adjust this value to change the history limit
-
     const imageWrapper = document.querySelector(".image-wrapper");
     const backgroundBlur = document.querySelector(".background-blur");
     let currentIndex = 0;
@@ -41,16 +41,16 @@ document.addEventListener("DOMContentLoaded", function () {
         let newIndex;
         do {
             newIndex = Math.floor(Math.random() * totalImages);
-        } while (newIndex === currentIndex);
-
+        } while (imageHistory.includes(newIndex)); // Check if newIndex is in the history
+    
         // Add the current index to the history
         imageHistory.push(currentIndex);
-
+    
         // Keep the history limited to the last 'historyLimit' images
         if (imageHistory.length > historyLimit) {
             imageHistory.shift(); // Remove the oldest entry
         }
-
+    
         currentIndex = newIndex;
         showImage(currentIndex);
     }
