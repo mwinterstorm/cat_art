@@ -1,16 +1,27 @@
+/* Ensure the entire page is covered */
 body, html {
     margin: 0;
+    padding: 0;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
     overflow: hidden;
-}.background-container {
+}
+
+/* Background styling */
+.background-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Ensure background is behind */
-    overflow: hidden; /* Prevent background overflow */
-}.background-blur {
+    z-index: -1;
+    overflow: hidden;
+}
+
+.background-blur {
     position: absolute;
     top: 0;
     left: 0;
@@ -22,43 +33,65 @@ body, html {
     filter: blur(10px);
     transition: opacity 0.5s ease-in-out;
     opacity: 1;
-}.carousel-container {
+}
+
+/* Carousel container */
+.carousel-container {
     position: relative;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-}.carousel {
+}
+
+/* Carousel images */
+.image-wrapper {
     position: relative;
-    display: block;
-    transition: opacity 0.5s ease-in-out;
-    z-index: 1; /* Ensure carousel is on top */
-}.image-wrapper {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 90%; 
-    max-height: 90%; 
-}.carousel img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; 
-    opacity: 0; /* Re-add opacity */
-}.carousel img.active {
+}
+
+/* Make sure images are displayed properly */
+.carousel img {
+    max-width: 80%;
+    max-height: 80%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 2; /* Ensure images appear above the background */
+}
+
+/* Only show the active image */
+.carousel img.active {
     opacity: 1;
-}.prev-btn,.next-btn {
+    position: relative;
+}
+
+/* Navigation buttons */
+.prev-btn, .next-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
-    padding: 10px;
+    padding: 10px 15px;
     border: none;
     cursor: pointer;
-    z-index: 2; /* Ensure buttons are on top of the carousel */
-}.prev-btn {
+    font-size: 16px;
+    z-index: 3; /* Ensure buttons are above everything */
+}
+
+.prev-btn {
     left: 10px;
-}.next-btn {
+}
+
+.next-btn {
     right: 10px;
 }

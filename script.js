@@ -1,64 +1,37 @@
-const carousel = document.querySelector('.carousel');
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
-const imageCount = 20; // Update with your actual image count
-let currentImage = 0;
+document.addEventListener("DOMContentLoaded", function () {
+    const imageWrapper = document.querySelector(".image-wrapper");
+    const backgroundBlur = document.querySelector(".background-blur");
+    const totalImages = 20; // Number of images
+    let currentIndex = 0;
 
-const imageWrapper = document.querySelector('.image-wrapper');
+    // Dynamically create and insert images
+    for (let i = 1; i <= totalImages; i++) {
+        let img = document.createElement("img");
+        img.src = `images/image${i}.jpeg`; // Adjust path if needed
+        if (i === 1) img.classList.add("active"); // First image is active
+        imageWrapper.appendChild(img);
+    }
 
-// The HTML for your images is created here.
-for (let i = 0; i < imageCount; i++) {
-    const img = document.createElement('img');
-    img.src = `images/image${i + 1}.jpeg`;
-    img.alt = `Image ${i + 1}`;
-    // Removed active class
-    imageWrapper.appendChild(img);
-}
+    const images = document.querySelectorAll(".image-wrapper img");
 
-function showImage(index) {
-    // Remove 'active' class from the CURRENT image, not all
-    imageWrapper.children[currentImage].classList.remove('active'); 
+    function showImage(index) {
+        images.forEach(img => img.classList.remove("active"));
+        images[index].classList.add("active");
 
-    const img = imageWrapper.children[index];
-    img.classList.add('active');
+        // Update background with active image
+        backgroundBlur.style.backgroundImage = `url('${images[index].src}')`;
+    }
 
-    const backgroundBlur = document.querySelector('body >.background-container >.background-blur');    backgroundBlur.style.backgroundImage = `url(images/image${index + 1}.jpeg)`;
-    backgroundBlur.style.opacity = 1;
+    document.querySelector(".next-btn").addEventListener("click", function () {
+        currentIndex = (currentIndex + 1) % totalImages;
+        showImage(currentIndex);
+    });
 
-    currentImage = index;
-}
+    document.querySelector(".prev-btn").addEventListener("click", function () {
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+        showImage(currentIndex);
+    });
 
-// Event listeners for the next and previous buttons.
-prevBtn.addEventListener('click', () => {
-    let nextImage = (currentImage - 1 + imageCount) % imageCount;
-    showImage(nextImage);
+    // Initialize first image
+    showImage(currentIndex);
 });
-
-nextBtn.addEventListener('click', () => {
-    let nextImage = (currentImage + 1) % imageCount;
-    showImage(nextImage);
-});
-
-// Automatically rotates the images.
-let autoRotateInterval;
-
-function startAutoRotate() {
-    autoRotateInterval = setInterval(() => {
-        let nextImage = (currentImage + 1) % imageCount;
-        showImage(nextImage);
-    }, 3000);
-}
-
-// Stops the automatic rotation.
-function stopAutoRotate() {
-    clearInterval(autoRotateInterval);
-}
-
-// Starts and stops the automatic rotation when the mouse enters and leaves the carousel.
-startAutoRotate();
-
-carousel.addEventListener('mouseenter', stopAutoRotate);
-carousel.addEventListener('mouseleave', startAutoRotate);
-
-// Shows the first image when the page loads.
-showImage(0);
