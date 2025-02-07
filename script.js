@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Initialize carousel
-    showImage(currentIndex);
+    nextImage();
     startAutoSlide();
 
     const prevBtn = document.querySelector(".prev-btn");
