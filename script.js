@@ -21,13 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
         images.forEach(img => img.classList.remove("active"));
         images[index].classList.add("active");
     
-        console.log("Showing image:", images[index].src); // Debugging
-    
+    let indexblur = index 
         // Ensure background updates properly
         if (backgroundBlur) {
             backgroundBlur.style.opacity = "0";
             setTimeout(() => {
-                backgroundBlur.style.backgroundImage = `url('${images[index].src}')`;
+                backgroundBlur.style.backgroundImage = `url('${images[indexblur].src}')`;
                 backgroundBlur.style.opacity = "1";
             }, 300);
         }
