@@ -71,6 +71,8 @@ body, html {
 
 /* Images inside the wrapper */
 .image-wrapper img {
+    border-radius: 10px;
+    filter: drop-shadow(15px 15px 15px rgba(0, 0, 0, 0.6)); /* x-offset, y-offset, blur-radius, color */
     max-width: 95%;
     max-height: 95%;
     zoom: 150%;
