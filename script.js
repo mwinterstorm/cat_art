@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const totalImages = 21;
+    const totalImages = 22;
     
     const historyLimit = totalImages - 1; // Adjust this value to change the history limit
     const imageHistory = new Array(); // Array to store image history
